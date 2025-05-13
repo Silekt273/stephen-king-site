@@ -1,0 +1,453 @@
+/* Основные стили */
+:root {
+    --primary-color: #222;
+    --secondary-color: #b71c1c;
+    --accent-color: #fbc02d;
+    --light-color: #f5f5f5;
+    --dark-color: #121212;
+    --text-color: #333;
+    --text-light: #fff;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Элемент для эффекта мерцания */
+.flicker-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle at 70% 30%,
+            rgba(255, 160, 60, 0.3),
+            transparent 70%);
+    animation: flicker 5s infinite alternate;
+    z-index: 1;
+    pointer-events: none;
+    /* Позволяет кликать сквозь элемент */
+}
+
+/* Контент и изображение поверх эффекта */
+.header-content,
+.header-image {
+    position: relative;
+    z-index: 2;
+}
+
+.header-image img {
+    max-height: 280px;
+    width: auto;
+    object-fit: contain;
+    filter: drop-shadow(0 0 10px rgba(255, 160, 60, 0.3));
+}
+
+/* Анимация мерцания */
+@keyframes flicker {
+    0% {
+        opacity: 0.3;
+    }
+
+    20% {
+        opacity: 0.5;
+        transform: scale(1.02);
+    }
+
+    40% {
+        opacity: 0.2;
+    }
+
+    60% {
+        opacity: 0.7;
+        transform: scale(1.01);
+    }
+
+    80% {
+        opacity: 0.4;
+    }
+
+    100% {
+        opacity: 0.6;
+    }
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    line-height: 1.6;
+    color: var(--text-color);
+    background-color: var(--light-color);
+    background:
+        linear-gradient(rgba(235, 235, 235, 0.8), rgba(199, 199, 199, 0.8)),
+        url(img/9ee51adb787cd21a64ddef617d2c5ea7.jpeg) center/cover fixed;
+}
+
+
+
+h1,
+h2,
+h3,
+h4 {
+    font-family: 'Playfair Display', serif;
+    font-weight: 700;
+}
+
+a {
+    text-decoration: none;
+    color: var(--secondary-color);
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+/* Шапка */
+.main-header {
+    height: 300px;
+    background: #121212;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+    overflow: hidden;
+    position: relative;
+}
+
+.header-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    text-align: center;
+}
+
+.header-content h1 {
+    font-size: 3.5rem;
+    margin-bottom: 1rem;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.subtitle {
+    font-size: 1.5rem;
+    font-style: italic;
+    opacity: 0.9;
+}
+
+.header-image {
+    max-width: 300px;
+    margin: 2rem auto 0;
+    border-radius: 5px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    margin-top: 10px;
+}
+
+/* Навигация */
+.main-nav {
+    background-color: var(--primary-color);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.main-nav ul {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.main-nav li {
+    margin: 0;
+}
+
+.main-nav a {
+    color: var(--text-light);
+    padding: 1.2rem 1.5rem;
+    display: block;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.main-nav a:hover {
+    background-color: var(--secondary-color);
+    color: var(--text-light);
+}
+
+/* Основное содержимое */
+.main-content {
+    max-width: 1200px;
+    margin: 3rem auto;
+    padding: 0 2rem;
+}
+
+.section {
+    margin-bottom: 4rem;
+}
+
+.section h2 {
+    font-size: 2.2rem;
+    margin-bottom: 2rem;
+    color: var(--primary-color);
+    border-bottom: 3px solid var(--accent-color);
+    padding-bottom: 0.5rem;
+    display: inline-block;
+}
+
+/* Биография */
+.biography-section .bio-content {
+    display: flex;
+    gap: 3rem;
+    align-items: center;
+}
+
+.bio-image {
+    width: 300px;
+    border-radius: 5px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.bio-text {
+    flex: 1;
+}
+
+.bio-text p {
+    margin-bottom: 1.2rem;
+}
+
+/* Книги */
+.books-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 2rem;
+}
+
+.book-card {
+    background: white;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.book-card:hover {
+    transform: translateY(-10px);
+}
+
+.book-cover {
+    width: 100%;
+    height: 390px;
+    object-fit: cover;
+    margin-top: 20px;
+}
+
+.book-info {
+    padding: 1.5rem;
+}
+
+.book-info h3 {
+    color: var(--secondary-color);
+    margin-bottom: 0.5rem;
+}
+
+.book-genre {
+    font-style: italic;
+    color: #666;
+    margin-bottom: 1rem;
+    font-size: 0.9rem;
+}
+
+.book-stats {
+    font-size: 0.8rem;
+    color: #777;
+    margin-top: 1rem;
+    font-weight: 500;
+}
+
+/* Фильмы */
+.movies-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    gap: 2rem;
+}
+
+.movie-card {
+    display: flex;
+    background: white;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+}
+
+.movie-poster {
+    width: 150px;
+    height: auto;
+    object-fit: cover;
+}
+
+.movie-info {
+    padding: 1.5rem;
+    flex: 1;
+}
+
+.movie-info h3 {
+    color: var(--secondary-color);
+    margin-bottom: 0.5rem;
+}
+
+.movie-director,
+.movie-rating {
+    font-size: 0.9rem;
+    margin-bottom: 0.5rem;
+    color: #555;
+}
+
+.movie-rating {
+    font-weight: bold;
+    color: var(--accent-color);
+}
+
+/* Галерея */
+.photo-gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 1.5rem;
+}
+
+.photo-gallery img {
+    height: 200px;
+    width: 100%;
+    object-fit: cover;
+    border-radius: 5px;
+    transition: transform 0.3s ease;
+}
+
+.photo-gallery img:hover {
+    transform: scale(1.05);
+}
+
+/* Цитаты */
+.quotes-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 2rem;
+}
+
+.quote-card {
+    background: white;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+    position: relative;
+}
+
+.quote-card p {
+    font-size: 1.1rem;
+    font-style: italic;
+    margin-bottom: 1rem;
+    color: var(--dark-color);
+}
+
+.quote-card footer {
+    text-align: right;
+    font-weight: 500;
+    color: var(--secondary-color);
+}
+
+/* Подвал */
+.main-footer {
+    background-color: var(--primary-color);
+    color: var(--text-light);
+    padding: 3rem 0 0;
+}
+
+.footer-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+}
+
+.footer-section h3 {
+    color: var(--accent-color);
+    margin-bottom: 1.5rem;
+    font-size: 1.3rem;
+}
+
+.footer-section p {
+    margin-bottom: 1rem;
+    opacity: 0.8;
+}
+
+.subscribe-form input {
+    width: 100%;
+    padding: 0.8rem;
+    margin-bottom: 0.5rem;
+    border: none;
+    border-radius: 4px;
+}
+
+.subscribe-form button {
+    background-color: var(--accent-color);
+    color: var(--dark-color);
+    border: none;
+    padding: 0.8rem 1.5rem;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s;
+}
+
+.subscribe-form button:hover {
+    background-color: #ffd700;
+}
+
+.copyright {
+    text-align: center;
+    padding: 1.5rem;
+    margin-top: 2rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    font-size: 0.9rem;
+    opacity: 0.7;
+}
+
+/* Адаптивность */
+@media (max-width: 768px) {
+    .header-content h1 {
+        font-size: 2.5rem;
+    }
+
+    .subtitle {
+        font-size: 1.2rem;
+    }
+
+    .main-nav ul {
+        flex-direction: column;
+    }
+
+    .biography-section .bio-content {
+        flex-direction: column;
+    }
+
+    .bio-image {
+        width: 100%;
+        max-width: 300px;
+        margin-bottom: 2rem;
+    }
+
+    .movie-card {
+        flex-direction: column;
+    }
+
+    .movie-poster {
+        width: 100%;
+        height: 200px;
+    }
+}
